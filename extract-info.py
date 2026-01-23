@@ -6,4 +6,8 @@ URL = "https://www.youtube.com/watch?v=RWJPrgYJT5M"
 ydl_opts = {"proxy": "socks5://127.0.0.1:12334"}
 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
     info = ydl.extract_info(URL, download=False)
-    print(json.dumps(ydl.sanitize_info(info)))
+    data = json.dumps(ydl.sanitize_info(info), indent=4)
+    print(json.dumps(data))
+    if data:
+        with open("ex_info.json", "w") as f:
+            f.write(data)
